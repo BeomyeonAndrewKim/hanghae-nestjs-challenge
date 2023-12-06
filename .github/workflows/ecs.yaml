@@ -1,0 +1,15 @@
+name: Docker to ECR
+on:
+  push:
+    branches: [feature/github_action]
+
+stpes:
+  - uses: actions/checkout@v4
+  - id: ecr-publish
+    name: Build image
+    uses: bitovi/github-actions-ecr-publish@v0.1.0
+    with:
+      aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      aws_default_region: ap-northeast-2
+      aws_ecr_repo_name: hanghae-challenge
