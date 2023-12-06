@@ -8,11 +8,12 @@ const EXTERNAL_DB_ENVS = new Set(['production', 'development']);
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: false,
+      isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
+      inject: [ConfigService],
       useFactory: (configService: ConfigService): TypeOrmModuleOptions => {
         const config: TypeOrmModuleOptions = {
           type: 'postgres',
@@ -35,7 +36,6 @@ const EXTERNAL_DB_ENVS = new Set(['production', 'development']);
 
         return config;
       },
-      inject: [ConfigService],
     }),
     HealthModule,
   ],
