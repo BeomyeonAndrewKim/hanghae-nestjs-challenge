@@ -4,6 +4,7 @@ WORKDIR /var/app
 COPY package*.json .
 RUN npm install
 COPY . .
+COPY .env.production .
 ENV NODE_ENV production
 RUN npm run build
 EXPOSE 3001
