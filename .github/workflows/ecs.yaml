@@ -61,7 +61,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
-
+      - name: Create .env.production file
+        run: |
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env.production
+          echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env.production
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env.production
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env.production
+          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env.production
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
