@@ -52,7 +52,7 @@ jobs:
     environment: production
 
     steps:
-      - name: Checkout
+      - name: Checkout V3
         uses: actions/checkout@v3
 
       - name: Configure AWS credentials
