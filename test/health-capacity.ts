@@ -6,7 +6,7 @@ export default function () {
   const PORT = '3001';
   const PATH = 'health';
   const URL = `${PROTOCAL}://${HOST}:${PORT}/${PATH}`;
-  const res = http.get(URL, { timeout: '120s' });
+  const res = http.get(URL);
 
   check(res, {
     '200': (r) => {
